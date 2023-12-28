@@ -1,0 +1,108 @@
+--- patches/Bonfire.php	2023-12-10 15:02:29
++++ patches/anjing.php	2023-12-10 15:33:37
+@@ -86,8 +86,54 @@
+         // Sidebar menu
+         $menus->createMenu('sidebar');
+         $menus->menu('sidebar')
++            ->createCollection('profile', 'Profile');
++        $menus->menu('sidebar')
++            ->createCollection('instansi', 'Instansi')
++            ->setFontAwesomeIcon('fas fa-cog')
++            ->setCollapsible();
++        $menus->menu('sidebar')
++            ->createCollection('sdm', 'Sumber Daya Manusia')
++            ->setFontAwesomeIcon('fas fa-cog')
++            ->setCollapsible();
++        $menus->menu('sidebar')
++            ->createCollection('laboratorium', 'Laboratorium')
++            ->setFontAwesomeIcon('fas fa-cog')
++            ->setCollapsible();
++        $menus->menu('sidebar')
++            ->createCollection('program', 'Program');
++
++        $menus->menu('sidebar')
++            ->createCollection('kinerja', 'Kinerja');
++
++        $menus->menu('sidebar')
++            ->createCollection('informasipublik', 'Informasi Publik');
++        $menus->menu('sidebar')
++            ->createCollection('informasipublikumum', 'Informasi Umum')
++            ->setFontAwesomeIcon('fas fa-cog')
++            ->setCollapsible();
++
++        $menus->menu('sidebar')
++            ->createCollection('informasiveteriner', 'Informasi Veteriner');
++        $menus->menu('sidebar')
++            ->createCollection('informasiveterinerikm', 'IKM')
++            ->setFontAwesomeIcon('fas fa-cog')
++            ->setCollapsible();
++        $menus->menu('sidebar')
++            ->createCollection('informasiveterinerpublik', 'Veteriner - Informasi Publik')
++            ->setFontAwesomeIcon('fas fa-cog')
++            ->setCollapsible();
++        $menus->menu('sidebar')
++            ->createCollection('informasiveterinerpelayananpublik', 'Pelayanan Publik')
++            ->setFontAwesomeIcon('fas fa-cog')
++            ->setCollapsible();
++
++        $menus->menu('sidebar')
+             ->createCollection('content', lang('Bonfire.contentModTitle'));
+         $menus->menu('sidebar')
++            ->createCollection('web', 'web')
++            ->setFontAwesomeIcon('fas fa-cog')
++            ->setCollapsible();
++        $menus->menu('sidebar')
+             ->createCollection('settings', lang('Bonfire.settingsModTitle'))
+             ->setFontAwesomeIcon('fas fa-cog')
+             ->setCollapsible();
+@@ -124,7 +170,7 @@
+      */
+     private function discoverCoreModules()
+     {
+-        if (! $modules = cache('bf-modules-search')) {
++        if (!$modules = cache('bf-modules-search')) {
+             $modules  = [];
+             $excluded = ['Core', 'Config', 'Language', 'Views'];
+ 
+@@ -148,7 +194,7 @@
+ 
+         // save instances of our module configs
+         foreach ($modules as $namespace => $dir) {
+-            if (! is_file($dir . '/Module.php')) {
++            if (!is_file($dir . '/Module.php')) {
+                 continue;
+             }
+ 
+@@ -160,20 +206,20 @@
+ 
+     private function discoverAppModules()
+     {
+-        if (! $modules = cache('app-modules-search')) {
++        if (!$modules = cache('app-modules-search')) {
+             $modules  = [];
+             $excluded = ['Core', 'Config', 'Language', 'Views'];
+ 
+             $paths = config('Bonfire')->appModules;
+ 
+-            if (! is_array($paths) || empty($paths)) {
++            if (!is_array($paths) || empty($paths)) {
+                 log_message('debug', 'No app modules directories specified. Skipping.');
+ 
+                 return;
+             }
+ 
+             foreach ($paths as $namespace => $dir) {
+-                if (! is_dir($dir)) {
++                if (!is_dir($dir)) {
+                     continue;
+                 }
+ 
+@@ -199,7 +245,7 @@
+ 
+         // save instances of our module configs
+         foreach ($modules as $namespace => $dir) {
+-            if (! is_file($dir . '/Module.php')) {
++            if (!is_file($dir . '/Module.php')) {
+                 continue;
+             }
+ 

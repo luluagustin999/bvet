@@ -1,0 +1,17 @@
+.header {
+            background-image: url('path_to_your_image.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .title h1 {
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .header {
+                height: 150px;
+            }
+        }

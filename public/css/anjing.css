@@ -1,0 +1,49 @@
+.header {
+  background-image: url('/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.title h1 {
+  color: white;
+}
+@media (max-width: 768px) {
+  .header {
+    height: 150px;
+  }
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Adjust color and opacity as needed */
+  z-index: 1;
+}
+
+.title {
+  position: relative;
+  z-index: 2;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  position: relative;
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+}
